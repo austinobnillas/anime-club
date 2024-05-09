@@ -1,4 +1,5 @@
 import './App.css'
+import 'swiper/css'
 import { useNavigate, Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from './components/Homepage';
 import 'react-multi-carousel/lib/styles.css';

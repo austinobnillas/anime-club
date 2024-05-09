@@ -10,6 +10,7 @@ import Headline from './Headline';
 function Homepage() {
 const [count, setCount] = useState(0)
 const [data, setData] = useState([])
+const [currentAnime, setCurrentAnime] = useState([])
 const [pages, setPages] = useState()
 const [searchQuery, setSearchQuery] = useState('');
 
@@ -20,6 +21,14 @@ useEffect(() => {
             setData(res.data.data)
             console.log(res.data.pagination.last_visible_page)
             setPages(res.data.pagination.last_visible_page)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        axios.get(`https://api.jikan.moe/v4/seasons/now?sfw&limit=10`)
+        .then((res) => {
+            console.log(res)
+            setCurrentAnime(res.data.data)
         })
         .catch((err) => {
             console.log(err)
@@ -52,18 +61,12 @@ const searchAnime = (e) => {
         })
 }
 return (
-    <div className='dashboardContainer'>
+    <div className=''>
     <Header/>
     <Headline anime={data} setAnime={setData}/>
-    <div className="search">
-        <form onSubmit={searchAnime}>
-            <input className="searchBar" placeholder="Search Anime Name" type="text" onChange={(e) => {setSearchQuery(e.target.value)}} />
-            <button className='searchButton' type='submit'>Search</button>
-        </form>
-    </div>
-    
     <div className="animeBox">
-    {data.map((anime) => (
+        
+    {currentAnime.map((anime) => (
         <div key={anime.mal_id} className='animeList'>
             <img className='images' src={anime.images.jpg.large_image_url} alt="Show PV" />
             <p className='animeName'>

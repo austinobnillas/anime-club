@@ -13,6 +13,13 @@ const Header = () => {
                 <h3>News</h3>
                 <h3>Search</h3>
             </div> */}
+            
+        </div>
+        <div className="search">
+            <form>
+                <input className="searchBar" placeholder="Search Anime Name" type="text" />
+                <button className='searchButton' type='submit'>Search</button>
+            </form>
         </div>
         <div>
             <button className='signInButton'>Sign in</button>
