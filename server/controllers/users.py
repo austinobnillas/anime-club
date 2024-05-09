@@ -31,8 +31,7 @@ def create_token(payload):
     token = jwt.encode(payload, SECRET_KEY, ALGORITHM)
     return token
 
-
-#backend validations
+#backend validations, will most likely remove this in the future in favor of pydantic validations
 def register_validations(user):
     validation_errors={}
     if len(user.username) < 3:
@@ -46,7 +45,6 @@ def register_validations(user):
     if User.get_one_user(user):
         validation_errors["username_exist"] = "Username already in use"
     return validation_errors
-
 
 #register
 @router.post('/api/register')
@@ -82,7 +80,6 @@ async def login(user: RegisteredUser, response: Response):
     cookie = create_token({"username": user.username})
     response.set_cookie(key="cookie", value=cookie)
     return {'msg': "logged in", 'user': user}
-
 
 #logout
 @router.post('/api/logout')
