@@ -85,13 +85,44 @@ p {
   background-color: black;
 }
   
+.homepageBodyContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin: 5px;
+}
+.leftHomepageBody {
+  width: 75vw;
+  
+}
+.rightHomepageBody {
+  width: 25vw;
+}
 
+.topAnimeBox {
+  display: flex;
+  align-items: center;
+  background-color: rgb(34, 34, 34);
+  margin-bottom: 5px;
+  border-radius: 15px;
+}
+.topAnimeBox:hover {
+  opacity: 50%;
+}
 
+.topAnimeImages {
+  height: 125px;
+  width: 90px;
+  margin-right: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
 .animeList {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 8px;
+  margin: 5px;
 }
 .animeList:hover {
   opacity: 50%;
@@ -99,7 +130,7 @@ p {
 .animeBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   overflow: hidden;
 }
 .images {
@@ -217,7 +248,18 @@ p {
   .animeSynopsis {
     display: none;
   }
-  
+  .homepageBodyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+  .rightHomepageBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+  }
 }
 
 

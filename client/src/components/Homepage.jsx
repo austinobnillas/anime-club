@@ -5,12 +5,14 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import Login from './Login'
 import Header from './Header';
 import Headline from './Headline';
+import HomepageBody from './HomepageBody';
 
 
 function Homepage() {
 const [count, setCount] = useState(0)
 const [data, setData] = useState([])
 const [currentAnime, setCurrentAnime] = useState([])
+const [topAnime, setTopAnime] = useState([])
 const [pages, setPages] = useState()
 const [searchQuery, setSearchQuery] = useState('');
 
@@ -24,11 +26,22 @@ useEffect(() => {
         })
         .catch((err) => {
             console.log(err)
-        })
-        axios.get(`https://api.jikan.moe/v4/seasons/now?sfw&limit=10`)
+        });
+        // axios.get(`https://api.jikan.moe/v4/seasons/now?sfw&limit=10`)
+        axios.get(`https://api.jikan.moe/v4/seasons/now?sfw`)
         .then((res) => {
+            console.log("yes")
             console.log(res)
             setCurrentAnime(res.data.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        axios.get(`https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=10`)
+        .then((res) => {
+            console.log("yes")
+            console.log(res)
+            setTopAnime(res.data.data)
         })
         .catch((err) => {
             console.log(err)
@@ -51,7 +64,7 @@ useEffect(() => {
 const searchAnime = (e) => {
     e.preventDefault();
     setData([])
-    axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`)
+    axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
         .then((res) => {
             console.log(res)
             setData(res.data.data)
@@ -64,17 +77,12 @@ return (
     <div className=''>
     <Header/>
     <Headline anime={data} setAnime={setData}/>
-    <div className="animeBox">
-        
-    {currentAnime.map((anime) => (
-        <div key={anime.mal_id} className='animeList'>
-            <img className='images' src={anime.images.jpg.large_image_url} alt="Show PV" />
-            <p className='animeName'>
-                {anime.title_english ? anime.title_english : anime.title}
-            </p>
-        </div>
-    ))}
-    </div>
+    <HomepageBody 
+        currentAnime={currentAnime} 
+        setCurrentAnime={setCurrentAnime}
+        topAnime={topAnime} 
+        setTopAnime={setTopAnime}
+        />
     </div>
 )
 }
