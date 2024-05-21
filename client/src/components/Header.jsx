@@ -1,13 +1,29 @@
 import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-
-const Header = () => {
-
+import axios from "axios";
+import { useState } from "react";
+const Header = (props) => {
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
+    const {searchResults, setSearchResults} = props
+    const searchAnime = (e) => {
+        e.preventDefault();
+        axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
+            .then((res) => {
+                console.log(res)
+                setSearchResults(res.data.data)
+                navigate('/search')
+            })
+            .catch((err) => {
+                console.log(err)
+                navigate('/search')
+            })
+    }
     return (
         <>
         <div className="header">
         <div className="header-left">
-            <h1>AnimeClub</h1>
+            <Link to={'/'}><h1>AnimeClub</h1></Link>
             {/* <div className="nav">
                 <Link><h3>Browse</h3></Link>
                 <h3>News</h3>
@@ -16,8 +32,8 @@ const Header = () => {
             
         </div>
         <div className="search">
-            <form>
-                <input className="searchBar" placeholder="Search Anime Name" type="text" />
+            <form onSubmit={searchAnime}>
+                <input className="searchBar" placeholder="Search Anime Name" type="text" onChange={(e) => setSearchQuery(e.target.value) }/>
                 <button className='searchButton' type='submit'>Search</button>
             </form>
         </div>

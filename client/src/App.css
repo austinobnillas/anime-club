@@ -12,6 +12,9 @@ p {
   color: #F5E8C7;
   
 }
+a {
+  text-decoration: none;
+}
 /* CAROUSEL */
 .carousel {
   background: rgb(7,15,43);
@@ -40,11 +43,6 @@ p {
   transition: 0.5s ease-in-out; */
 }
 
-.carouselCardActive {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: visible;
-}
 
 .cardImage {
   border-radius: 15px;
@@ -62,49 +60,59 @@ p {
   width: 50%;
 }
 
-.carouselPagination {
-  transform: translate(-50%, 0);
-  position: absolute;
-}
-.paginationDot {
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  background-color: white;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.paginationDot:hover {
-  transform: scale(1.2);
-}
-
-.paginationDotActive {
-  background-color: black;
-}
   
 .homepageBodyContainer {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   margin: 5px;
 }
 .leftHomepageBody {
   width: 75vw;
-  
+  /* margin: 5px; */
+  background-color: rgb(34, 34, 34);
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
+
 }
 .rightHomepageBody {
   width: 25vw;
+  background-color: rgb(34, 34, 34);
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
+}
+@media (max-width: 1960px) {
+  .homepageBodyContainer {
+    height: 100vh;
+    overflow: scroll;
+  }
+  .leftHomepageBody {
+    height: inherit;
+    overflow: scroll;
+  }
+  .rightHomepageBody {
+    height: inherit;
+    overflow: scroll;
+  }
+  .homepageBodyContainer::-webkit-scrollbar {
+    display: none;
+  }
+  .leftHomepageBody::-webkit-scrollbar{
+    display: none;
+  }
+  .rightHomepageBody::-webkit-scrollbar{
+    display: none;
+  }
 }
 
 .topAnimeBox {
   display: flex;
   align-items: center;
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(18, 18, 18);
   margin-bottom: 5px;
   border-radius: 15px;
+  margin: 5px;
 }
 .topAnimeBox:hover {
   opacity: 50%;
@@ -122,7 +130,8 @@ p {
   flex-direction: column;
   align-items: flex-start;
   border-radius: 8px;
-  margin: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 .animeList:hover {
   opacity: 50%;
@@ -130,8 +139,7 @@ p {
 .animeBox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  overflow: hidden;
+  justify-content:space-evenly;
 }
 .images {
   width: 200px;
@@ -207,7 +215,71 @@ p {
   padding: 5px;
   border-radius: 15px 0px 0px 15px;
 }
-
+/* Search Results */
+.animeBox-search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  align-items: center;
+}
+/* Anime Details */
+.animeDetailsContainer {
+  display: flex;
+  flex-direction: column;
+}
+.animeDetails-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background: rgb(7,15,43);
+  background: linear-gradient(360deg, rgba(7,15,43,1) 0%, rgb(0, 0, 0) 35%);
+  padding: 50px;
+}
+.animeDetails-imaage {
+  border-radius: 15px;
+  margin-right: 50px;
+}
+.animeDetails-middle {
+  margin: 50px; 
+  display: flex;
+  flex-direction: row;
+}
+.animeDetails-description {
+  width: 50%;
+}
+.animeDetails-stats {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.animeDetails-bottom {
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+.animeDetails-trailer {
+  width: 100%;
+  height: 800px;
+}
+/* Footer */
+.footer {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(34, 34, 34);
+  margin-top: 10px;
+}
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+.footer-right {
+  display: flex;
+  flex-direction: column;
+}
 @media (max-width: 850px) {
   .animeBox {
     display: flex;

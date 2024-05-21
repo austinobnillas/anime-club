@@ -6,15 +6,19 @@ import Login from './Login'
 import Header from './Header';
 import Headline from './Headline';
 import HomepageBody from './HomepageBody';
+import Footer from './Footer';
 
 
-function Homepage() {
+function Homepage(props) {
+const {searchResults, setSearchResults} = props
+const {id, setId} = props
 const [count, setCount] = useState(0)
 const [data, setData] = useState([])
 const [currentAnime, setCurrentAnime] = useState([])
 const [topAnime, setTopAnime] = useState([])
 const [pages, setPages] = useState()
 const [searchQuery, setSearchQuery] = useState('');
+
 
 useEffect(() => {
     axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`)
@@ -61,28 +65,19 @@ useEffect(() => {
 //         console.log(err)})
 // }, [])
 
-const searchAnime = (e) => {
-    e.preventDefault();
-    setData([])
-    axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
-        .then((res) => {
-            console.log(res)
-            setData(res.data.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}
 return (
     <div className=''>
-    <Header/>
+    <Header searchResults={searchResults} setSearchResults={setSearchResults}/>
     <Headline anime={data} setAnime={setData}/>
     <HomepageBody 
         currentAnime={currentAnime} 
         setCurrentAnime={setCurrentAnime}
         topAnime={topAnime} 
         setTopAnime={setTopAnime}
+        id={id}
+        setId={setId}
         />
+    <Footer/>
     </div>
 )
 }
