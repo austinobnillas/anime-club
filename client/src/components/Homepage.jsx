@@ -50,7 +50,7 @@ useEffect(() => {
         .catch((err) => {
             console.log(err)
         })
-}, [])
+}, [ ])
 // useEffect(() => {
 //     // fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
 //     fetch(`https://api.jikan.moe/v4/top/anime?limit=5`)

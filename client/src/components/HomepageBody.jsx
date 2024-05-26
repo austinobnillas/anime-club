@@ -28,7 +28,6 @@ const HomepageBody = (props) => {
                 {topAnime.map((anime, index) => (
                     <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
                     <div className='topAnimeBox'>
-                        {/* <h1>{index+1}</h1> */}
                         <img className='topAnimeImages' src={anime.images.jpg.large_image_url} alt="Show PV" />
                         <div>
                             <h3 className='topAnimeTitle'>

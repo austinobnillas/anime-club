@@ -21,8 +21,8 @@ function App() {
                                         id={id}
                                         setId={setId}/>}/>
           <Route path={'/search'} element={<SearchResults 
-                                              searchResults={searchResults} s
-                                              etSearchResults={setSearchResults}
+                                              searchResults={searchResults} 
+                                              setSearchResults={setSearchResults}
                                               id={id}
                                               setId={setId}/>}/>
           <Route path={'/anime/:id'} element={<AnimeDetails 

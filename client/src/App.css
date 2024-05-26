@@ -36,6 +36,9 @@ a {
   justify-content: space-evenly;
   align-items: center;
   margin-top: 5px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
   /* position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -64,7 +67,8 @@ a {
 .homepageBodyContainer {
   display: flex;
   flex-direction: row;
-  margin: 5px;
+  max-width: 1600px;
+  margin: auto;
 }
 .leftHomepageBody {
   width: 75vw;
@@ -145,6 +149,7 @@ a {
   width: 200px;
   max-width: 200px;
   height: 300px;
+  border-radius: 8px;
 }
 .animeName {
   text-align: left;
@@ -152,12 +157,17 @@ a {
   max-width: 200px;
 }
 .header {
+  background-color: rgb(34, 34, 34);
+}
+.header-content-container {
   padding: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: rgb(34, 34, 34);
+  max-width: 1600px;
+  margin: auto;
 }
 .header-left {
   display: flex;
@@ -221,22 +231,43 @@ a {
   flex-wrap: wrap;
   justify-content:space-evenly;
   align-items: center;
+  max-width: 1600px;
+  margin: auto;
+}
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  background-color: rgb(34, 34, 34);
+  padding: 20px;
+  border-radius: 15px;
+}
+.searchResults:hover {
+  opacity: 50%;
+}
+.searchResults-img {
+  border-radius: 15px;
 }
 /* Anime Details */
 .animeDetailsContainer {
   display: flex;
   flex-direction: column;
 }
+.animeDetails-background {
+  background: rgb(7,15,43);
+  background: linear-gradient(360deg, rgba(7,15,43,1) 0%, rgb(0, 0, 0) 35%);
+}
 .animeDetails-top {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  background: rgb(7,15,43);
-  background: linear-gradient(360deg, rgba(7,15,43,1) 0%, rgb(0, 0, 0) 35%);
-  padding: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  max-width: 1600px;
+  margin: auto;
 }
-.animeDetails-imaage {
+.animeDetails-image {
   border-radius: 15px;
   margin-right: 50px;
 }
@@ -244,6 +275,8 @@ a {
   margin: 50px; 
   display: flex;
   flex-direction: row;
+  max-width: 1600px;
+  margin: auto;
 }
 .animeDetails-description {
   width: 50%;
@@ -254,23 +287,27 @@ a {
   width: 50%;
 }
 .animeDetails-bottom {
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  width: 1920px;
+  max-width: 1600px;
+  margin: auto;
 }
 .animeDetails-trailer {
   width: 100%;
   height: 800px;
 }
 /* Footer */
+.footer-container {
+  background-color: rgb(34, 34, 34);
+}
 .footer {
   padding: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(34, 34, 34);
-  margin-top: 10px;
+  padding-top: 10px;
+  max-width: 1600px;
+  margin: auto;
 }
 .footer-left {
   display: flex;
@@ -281,6 +318,13 @@ a {
   flex-direction: column;
 }
 @media (max-width: 850px) {
+  .header-content-container {
+    flex-direction: column;
+  }
+  .search {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   .animeBox {
     display: flex;
     flex-direction: row;
@@ -294,25 +338,10 @@ a {
   } 
   
   .carouselCard {
-    /* display: flex;
-    flex: 1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-height: 650px;
-    overflow: hidden;
-    justify-content: space-between; */
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
-    /* position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(.8);
-    transition: 0.5s ease-in-out; */
-  }
-  .cardOverlay{
-    
+  
   }
   .cardImage {
     border-radius: 15px;
@@ -326,11 +355,48 @@ a {
     align-items: center;
     height: 100vh;
   }
+  .leftHomepageBody {
+    width: 100%;
+  }
   .rightHomepageBody {
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: space-evenly;
+  }
+  .animeDetails-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: rgb(7,15,43);
+    background: linear-gradient(360deg, rgba(7,15,43,1) 0%, rgb(0, 0, 0) 35%);
+    padding: 50px;
+  }
+  .animeDetails-image {
+    border-radius: 15px;
+    margin-right: 0px;
+    width: 300px;
+  }
+  .animeDetails-middle {
+    margin: 50px; 
+    display: flex;
+    flex-direction: column;
+  }
+  .animeDetails-description {
+    width: 100%;
+  }
+  .animeDetails-stats {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .animeDetails-bottom {
+    width: 330px;
+  }
+  .animeDetails-trailer {
+    width: 100%;
+    height: 200px;
   }
 }
 

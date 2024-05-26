@@ -14,15 +14,17 @@ const Headline = (props) => {
         <div className="carousel">
         <Swiper
             style={{
-                '--swiper-navigation-color': '#fff',
-                '--swiper-pagination-color': '#fff',
+                '--swiper-navigation-color': '#9290C3',
+                '--swiper-pagination-color': 'orange',
+                '--swiper-pagination-bullet-inactive-color': '#9290C3',
+                '--swiper-pagination-bullet-inactive-opacity': 'none'
                 }}
             modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
             spaceBetween={50}
             slidesPerView={1}
             autoplay={{
                 delay: 4000,
-                disableOnInteraction: false,
+                disableOnInteraction: true,
                 }}
             loop={true}
             pagination={{ clickable: true}}
@@ -30,6 +32,7 @@ const Headline = (props) => {
             {anime.map((content, index)=>{
                 return(
                     <SwiperSlide key={index}>
+                        <Link key={anime.mal_id} to={`/anime/${content.mal_id}`}>
                         <div className="carouselCard">
                         <div className="cardOverlay">
                             <h1>{content.title_english}</h1>
@@ -39,6 +42,7 @@ const Headline = (props) => {
                         </div>
                         <img className="cardImage" src={content.images.jpg.large_image_url} alt="" />
                         </div>
+                        </Link>
                     </SwiperSlide>
                 )
             })}

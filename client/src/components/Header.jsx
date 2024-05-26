@@ -20,29 +20,29 @@ const Header = (props) => {
             })
     }
     return (
-        <>
         <div className="header">
-        <div className="header-left">
-            <Link to={'/'}><h1>AnimeClub</h1></Link>
-            {/* <div className="nav">
-                <Link><h3>Browse</h3></Link>
-                <h3>News</h3>
-                <h3>Search</h3>
-            </div> */}
-            
+            <div className="header-content-container">
+                <div className="header-left">
+                    <Link to={'/'}><h1>AnimeClub</h1></Link>
+                    {/* <div className="nav">
+                        <Link><h3>Browse</h3></Link>
+                        <h3>News</h3>
+                        <h3>Search</h3>
+                    </div> */}
+                    
+                </div>
+                <div className="search">
+                    <form onSubmit={searchAnime}>
+                        <input className="searchBar" placeholder="Search Anime Name" type="text" onChange={(e) => setSearchQuery(e.target.value) }/>
+                        <button className='searchButton' type='submit'>Search</button>
+                    </form>
+                </div>
+                <div>
+                    <button className='signInButton'>Sign in</button>
+                    <button className='registerButton'>Create Account</button>
+                </div>
+            </div>
         </div>
-        <div className="search">
-            <form onSubmit={searchAnime}>
-                <input className="searchBar" placeholder="Search Anime Name" type="text" onChange={(e) => setSearchQuery(e.target.value) }/>
-                <button className='searchButton' type='submit'>Search</button>
-            </form>
-        </div>
-        <div>
-            <button className='signInButton'>Sign in</button>
-            <button className='registerButton'>Create Account</button>
-        </div>
-        </div>
-        </>
     )
 }
 export default Header;

@@ -32,12 +32,14 @@ useEffect(() => {
     return (
         <div className="animeDetailsContainer">
             <Header searchResults={searchResults} setSearchResults={setSearchResults}/>
+            <div className="animeDetails-background">
                 <div className="animeDetails-top">
-                    <img className="animeDetails-imaage" src={imgUrl} alt="PV image" />
+                    <img className="animeDetails-image" src={imgUrl} alt="PV image" />
                     <div>
                         <h1>{animeData.title_english ? animeData.title_english : animeData.title} - ({animeData.year})</h1>
                         <p>{animeData.rating}</p>
                     </div>
+                </div>
                 </div>
                 <div className="animeDetails-middle">
                     <div className="animeDetails-stats">
@@ -45,6 +47,7 @@ useEffect(() => {
                             <p>Japanese: {animeData.title_japanese}</p>
                             <p>Season: {animeData.season} {animeData.year}</p>
                             <p>Status: {animeData.status}</p>
+                            <p>Episodes: {animeData.episodes}</p>
                             <p>Source: {animeData.source}</p>
                     </div>
                     <div className="animeDetails-description">
