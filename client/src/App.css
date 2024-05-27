@@ -110,6 +110,10 @@ a {
   }
 }
 
+.homepage-header {
+  padding-left: 5px;
+}
+
 .topAnimeBox {
   display: flex;
   align-items: center;
@@ -272,11 +276,12 @@ a {
   margin-right: 50px;
 }
 .animeDetails-middle {
-  margin: 50px; 
-  display: flex;
-  flex-direction: row;
+  width: 100%;
   max-width: 1600px;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
 }
 .animeDetails-description {
   width: 50%;
@@ -287,7 +292,8 @@ a {
   width: 50%;
 }
 .animeDetails-bottom {
-  width: 1920px;
+  width: 100%;
+  padding: 15px;
   max-width: 1600px;
   margin: auto;
 }

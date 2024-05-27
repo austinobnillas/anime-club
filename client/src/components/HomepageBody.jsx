@@ -8,7 +8,7 @@ const HomepageBody = (props) => {
     return (
         <div className="homepageBodyContainer">
         <div className="leftHomepageBody">
-            <h1>Currently Airing</h1>
+            <h1 className="homepage-header">Currently Airing</h1>
                 <div className="animeBox">
                 {currentAnime.map((anime) => (
                     <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
@@ -23,7 +23,7 @@ const HomepageBody = (props) => {
             </div>
         </div>
         <div className="rightHomepageBody">
-        <h1>Top Anime</h1>
+        <h1 className="homepage-header">Top Anime</h1>
                 <div className="topAnimeList">
                 {topAnime.map((anime, index) => (
                     <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>

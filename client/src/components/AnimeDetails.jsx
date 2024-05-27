@@ -44,18 +44,16 @@ useEffect(() => {
                 <div className="animeDetails-middle">
                     <div className="animeDetails-stats">
                         <h2>Details:</h2>
-                            <p>Japanese: {animeData.title_japanese}</p>
-                            <p>Season: {animeData.season} {animeData.year}</p>
-                            <p>Status: {animeData.status}</p>
-                            <p>Episodes: {animeData.episodes}</p>
-                            <p>Source: {animeData.source}</p>
+                        <p>Japanese: {animeData.title_japanese}</p>
+                        <p>Season: {animeData.season} {animeData.year}</p>
+                        <p>Status: {animeData.status}</p>
+                        <p>Episodes: {animeData.episodes}</p>
+                        <p>Source: {animeData.source}</p>
                     </div>
                     <div className="animeDetails-description">
                         <h2>Description: </h2>
                         <p>{animeData.synopsis}</p>
                     </div>
-
-                    
                 </div>
                 <div className="animeDetails-bottom">
                     <h2>Trailer:</h2>
