@@ -6,6 +6,8 @@ import AnimeDetails from './components/AnimeDetails'
 import { useNavigate, Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import 'react-multi-carousel/lib/styles.css';
 import { useState } from 'react';
+import Register from './components/Register';
+import Login from './components/Login';
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
                                             setSearchResults={setSearchResults}
                                             id={id}
                                             setId={setId} />}/>
+          <Route path={'/register'} element={<Register />}/>
+          <Route path={'/login'} element={<Login />}/>                                     
         </Routes>
       </div>
     </BrowserRouter>

@@ -38,8 +38,8 @@ const Header = (props) => {
                     </form>
                 </div>
                 <div>
-                    <button className='signInButton'>Sign in</button>
-                    <button className='registerButton'>Create Account</button>
+                    <Link to={'/login'}><button className='signInButton'>Sign in</button></Link>
+                    <Link to={'/register'}><button className='registerButton' >Create Account</button></Link>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status, Response
+from fastapi import APIRouter, HTTPException, status, Response, Request
 from datetime import datetime, timedelta, timezone
 from typing import Union
 from fastapi.encoders import jsonable_encoder
@@ -30,6 +30,15 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def create_token(payload):
     token = jwt.encode(payload, SECRET_KEY, ALGORITHM)
     return token
+
+def check_token(cookie):
+    isValid = False; # Get the token from the cookie
+    print(cookie)
+    if not cookie:
+        return {"message": "Token is missing"}, 401
+    else:
+        isToken = True
+    return isToken 
 
 #backend validations, will most likely remove this in the future in favor of pydantic validations
 def register_validations(user):
@@ -87,3 +96,10 @@ async def logout(response: Response):
     #delete cookie
     response.set_cookie("cookie", '', expires=0)
     return {'msg': "Logged Out"}
+
+#get user
+@router.get('/api/getuser')
+async def get_one_user(request: Request):
+    print(request.cookies.get('cookie'))
+    check_token(request.cookies.get('cookie'))
+    return request.cookies.get('cookie')
