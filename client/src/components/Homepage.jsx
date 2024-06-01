@@ -18,6 +18,7 @@ const [currentAnime, setCurrentAnime] = useState([])
 const [topAnime, setTopAnime] = useState([])
 const [pages, setPages] = useState()
 const [searchQuery, setSearchQuery] = useState('');
+const {user, setUser} = props;
 
 
 useEffect(() => {
@@ -50,6 +51,15 @@ useEffect(() => {
         .catch((err) => {
             console.log(err)
         })
+        axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
+        .then((res) => {
+            console.log(res)
+            setUser(res.data[0])
+        })
+        .catch((err) => {
+            console.log(err)
+            // console.log(errors.email_errors)
+        })
 }, [ ])
 // useEffect(() => {
 //     // fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
@@ -67,7 +77,7 @@ useEffect(() => {
 
 return (
     <div className=''>
-    <Header searchResults={searchResults} setSearchResults={setSearchResults}/>
+    <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
     <Headline anime={data} setAnime={setData}/>
     <HomepageBody 
         currentAnime={currentAnime} 

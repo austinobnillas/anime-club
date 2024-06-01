@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 const HomepageBody = (props) => {
     const {currentAnime, setCurrentAnime} = props
     const {topAnime, setTopAnime} = props
+    const {user, setUser} = props
 
     return (
         <div className="homepageBodyContainer">

@@ -7,6 +7,7 @@ import Header from "./Header";
 const SearchResults = (props) => {
     const {searchResults, setSearchResults} = props
     const {id, setId} = props
+    const {user, setUser} = props
     const navigate = useNavigate();
     useEffect(() => {
     if (searchResults.length === 0) {
@@ -15,7 +16,7 @@ const SearchResults = (props) => {
     }, [])
     return (
         <div>
-            <Header searchResults={searchResults} setSearchResults={setSearchResults}/>
+            <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
             <div className="animeBox-search">
                 {searchResults.map((anime) => (
                     <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>

@@ -5,7 +5,8 @@ import { useState } from "react";
 const Header = (props) => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
-    const {searchResults, setSearchResults} = props
+    const {searchResults, setSearchResults} = props;
+    const {user, setUser} = props;
     const searchAnime = (e) => {
         e.preventDefault();
         axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
@@ -18,6 +19,17 @@ const Header = (props) => {
                 console.log(err)
                 navigate('/search')
             })
+    }
+    const logout = () => {
+        axios.post(`http://localhost:8000/api/logout`, {}, {withCredentials: true})
+        .then((res) => {
+            console.log(res)
+            setUser('')
+            navigate('/')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
     return (
         <div className="header">
@@ -38,8 +50,17 @@ const Header = (props) => {
                     </form>
                 </div>
                 <div>
-                    <Link to={'/login'}><button className='signInButton'>Sign in</button></Link>
-                    <Link to={'/register'}><button className='registerButton' >Create Account</button></Link>
+                    { user ? 
+                    <div className='logout'>
+                        <h3>{user.username}</h3> 
+                        <button onClick={logout} className='logoutbutton' >Sign Out</button>
+                    </div> : 
+                    <div>
+                        <Link to={'/login'}><button className='signInButton'>Sign in</button></Link>
+                        <Link to={'/register'}><button className='registerButton' >Create Account</button></Link>
+                    </div>}
+
+                    
                 </div>
             </div>
         </div>

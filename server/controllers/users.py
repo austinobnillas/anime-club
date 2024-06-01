@@ -5,6 +5,7 @@ from fastapi.encoders import jsonable_encoder
 from passlib.context import CryptContext
 from jose import JOSEError, jwt
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from models.user import User
@@ -32,10 +33,9 @@ def create_token(payload):
     return token
 
 def check_token(cookie):
-    isValid = False; # Get the token from the cookie
-    print(cookie)
+    isToken = False;
     if not cookie:
-        return {"message": "Token is missing"}, 401
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
     else:
         isToken = True
     return isToken 
@@ -92,14 +92,21 @@ async def login(user: RegisteredUser, response: Response):
 
 #logout
 @router.post('/api/logout')
-async def logout(response: Response):
-    #delete cookie
-    response.set_cookie("cookie", '', expires=0)
-    return {'msg': "Logged Out"}
+def logout(response: Response):
+    # response.delete_cookie(key="cookie")
+    response.delete_cookie(key="cookie")
+    return {'msg': 'logged out'}
 
 #get user
 @router.get('/api/getuser')
 async def get_one_user(request: Request):
-    print(request.cookies.get('cookie'))
-    check_token(request.cookies.get('cookie'))
-    return request.cookies.get('cookie')
+    if check_token(request.cookies.get('cookie')) == True:
+        username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
+        print(username['username'])
+
+        user = User.get_one_user(username['username'])
+        return user
+    else: 
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
+    
+    

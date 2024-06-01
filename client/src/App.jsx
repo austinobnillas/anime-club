@@ -12,6 +12,7 @@ import Login from './components/Login';
 
 function App() {
   const [searchResults, setSearchResults] = useState([])
+  const [user, setUser] = useState()
   const [id, setId] = useState()
   return (
     <BrowserRouter>
@@ -21,17 +22,23 @@ function App() {
                                         searchResults={searchResults} 
                                         setSearchResults={setSearchResults}
                                         id={id}
-                                        setId={setId}/>}/>
+                                        setId={setId}
+                                        user={user} 
+                                        setUser={setUser}/>}/>
           <Route path={'/search'} element={<SearchResults 
                                               searchResults={searchResults} 
                                               setSearchResults={setSearchResults}
                                               id={id}
-                                              setId={setId}/>}/>
+                                              setId={setId}
+                                              user={user} 
+                                              setUser={setUser}/>}/>
           <Route path={'/anime/:id'} element={<AnimeDetails 
                                             searchResults={searchResults} 
                                             setSearchResults={setSearchResults}
                                             id={id}
-                                            setId={setId} />}/>
+                                            setId={setId} 
+                                            user={user} 
+                                            setUser={setUser}/>}/>
           <Route path={'/register'} element={<Register />}/>
           <Route path={'/login'} element={<Login />}/>                                     
         </Routes>

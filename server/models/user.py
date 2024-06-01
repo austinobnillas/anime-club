@@ -38,8 +38,8 @@ class User():
     @classmethod
     def get_one_user(cls, data):
         query = f"""
-            SELECT * FROM users 
-            WHERE username = "{data.username}";
+            SELECT username FROM users 
+            WHERE username = "{data}";
         """
         result = MySQLConnection(db).query_db(query)
         print(result)

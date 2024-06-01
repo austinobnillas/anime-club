@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const AnimeDetails = (props) => {
 const {searchResults, setSearchResults} = props
+const {user, setUser} = props
 const {id} = useParams()
 const [animeData, setAnimeData] = useState({})
 const [imgUrl, setImgUrl] = useState()
@@ -31,7 +32,7 @@ useEffect(() => {
 }, [])
     return (
         <div className="animeDetailsContainer">
-            <Header searchResults={searchResults} setSearchResults={setSearchResults}/>
+            <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
             <div className="animeDetails-background">
                 <div className="animeDetails-top">
                     <img className="animeDetails-image" src={imgUrl} alt="PV image" />
