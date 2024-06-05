@@ -60,7 +60,7 @@ useEffect(() => {
             console.log(err)
             // console.log(errors.email_errors)
         })
-}, [ ])
+}, [])
 // useEffect(() => {
 //     // fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)
 //     fetch(`https://api.jikan.moe/v4/top/anime?limit=5`)

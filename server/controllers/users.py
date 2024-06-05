@@ -81,10 +81,10 @@ async def login(user: RegisteredUser, response: Response):
     user_account = User.login(user)
     #validate correct username, case sensitive
     if not user_account:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid Username")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid Username/Password")
     #validate hashed password and entered password
     if not pwd_context.verify(user.password, user_account[0]['password']):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid Password")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid Username/Password")
     #create cookie if no errors
     cookie = create_token({"username": user.username})
     response.set_cookie(key="cookie", value=cookie)
@@ -103,7 +103,7 @@ async def get_one_user(request: Request):
     if check_token(request.cookies.get('cookie')) == True:
         username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
         print(username['username'])
-
+        
         user = User.get_one_user(username['username'])
         return user
     else: 

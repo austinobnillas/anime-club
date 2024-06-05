@@ -13,6 +13,7 @@ const Register = (props) => {
     const [confirm_password, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState();
     const navigate = useNavigate();
+    
     const registerHandler = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:8000/api/register`, {username, email, password, confirm_password}, {withCredentials: true})

@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from controllers import users
+from controllers import users, anime_lists, animes
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -20,6 +20,8 @@ app.add_middleware(
     )
 
 app.include_router(users.router)
+app.include_router(anime_lists.router)
+app.include_router(animes.router)
 
 @app.get("/")
 def read_root():
