@@ -2,8 +2,13 @@ from typing import Union
 from fastapi import FastAPI
 from controllers import users, anime_lists, animes
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 app = FastAPI()
+
+
 
 origins = [
     "http://localhost.tiangolo.com",
@@ -25,6 +30,7 @@ app.include_router(animes.router)
 
 @app.get("/")
 def read_root():
+    print(os.getenv("SECRET_KEY"))
     return {"Hello": "World"}
 
 @app.get("/items/{item_id}")

@@ -9,11 +9,14 @@ from fastapi.responses import JSONResponse
 from models.user import User
 from models.anime_list import AnimeList
 from .users import check_token, get_one_user
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 router = APIRouter()
 
-SECRET_KEY = "58d2ea9c3cfcdf9cb6d7d3e23be9528434ca0059eb99c17fda0911427020dd85"
-ALGORITHM = "HS256"
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
 class AnimeWatchlist(BaseModel):
     anime_list_name: str

@@ -7,12 +7,17 @@ from jose import JOSEError, jwt
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 import re
+import os
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from models.user import User
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 router = APIRouter()
 
-SECRET_KEY = "58d2ea9c3cfcdf9cb6d7d3e23be9528434ca0059eb99c17fda0911427020dd85"
-ALGORITHM = "HS256"
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
 class UnregisteredUser(BaseModel):
     username: str
