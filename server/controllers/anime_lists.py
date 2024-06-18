@@ -17,7 +17,6 @@ ALGORITHM = "HS256"
 
 class AnimeWatchlist(BaseModel):
     anime_list_name: str
-    anime_list_description: str
     user_id: int 
 
 #CREATE
@@ -35,8 +34,8 @@ async def create_anime_list(anime_list: AnimeWatchlist, request: Request, respon
         #     'user_id': user_data[0]['id']}
         # print(anime_list_details)
         anime_list.user_id = user_data[0]['id']
-        print(anime_list.user_id)
-
+        # print(anime_list.user_id)
+        # print('LIST', anime_list)
         AnimeList.create_anime_list(anime_list)
         new_anime_list = AnimeList.get_one_users_list(anime_list.user_id)
         return new_anime_list
@@ -44,15 +43,30 @@ async def create_anime_list(anime_list: AnimeWatchlist, request: Request, respon
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
 
 #READ
-@router.get("/api/animelist/{id}")
-async def get_one_anime_list(id: int, request: Request, response: Response):
+@router.get("/api/animelist")
+async def get_users_anime_list(request: Request, response: Response):
     if check_token(request.cookies.get('cookie')) == True:
-        user = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
-        print(id)
-        one_anime_list = AnimeList.get_one_list(id);
-        return one_anime_list
+        username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
+        user = User.get_one_user(username['username'])
+        users_anime_lists = AnimeList.get_one_users_list(user[0]['id']);
+        return users_anime_lists
     else: 
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
+
+# READ ONE LISTS CONTENTS
+@router.get("/api/animelist/{list_id}")
+async def get_anime_list_contents(list_id: int, request: Request, response: Response):
+    if check_token(request.cookies.get('cookie')) == True:
+        username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
+        user = User.get_one_user(username['username'])
+
+        query_data = { "id": list_id, "user_id": user[0]['id']} 
+
+        data = AnimeList.get_one_list_contents(query_data)
+        return data
+    else: 
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
+
 
 #UPDATE
 @router.get('/api/EDIanimelist')

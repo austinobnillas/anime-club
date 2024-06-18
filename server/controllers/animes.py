@@ -30,6 +30,7 @@ async def add_anime(anime_list_id: int, anime_id: int, anime: AnimeModel, reques
     if check_token(request.cookies.get('cookie')) == True:
         anime.anime_list_id = anime_list_id;
         anime.anime_mal_id = anime_id;
+        #check if this anime is already in the db
         if Anime.check_anime(anime):
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="You've already added this anime to this list")
         print(anime)

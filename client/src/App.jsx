@@ -8,6 +8,8 @@ import 'react-multi-carousel/lib/styles.css';
 import { useState } from 'react';
 import Register from './components/Register';
 import Login from './components/Login';
+import AnimeLists from './components/AnimeLists';
+import AnimeListsContents from './components/AnimeListContents';
 
 
 function App() {
@@ -39,6 +41,20 @@ function App() {
                                             setId={setId} 
                                             user={user} 
                                             setUser={setUser}/>}/>
+          <Route path={'/animelists'} element={<AnimeLists 
+                                            searchResults={searchResults} 
+                                            setSearchResults={setSearchResults}
+                                            id={id}
+                                            setId={setId} 
+                                            user={user} 
+                                            setUser={setUser}/>}/>
+          <Route path={'/animelists/:list_id'} element={<AnimeListsContents 
+                                            searchResults={searchResults} 
+                                            setSearchResults={setSearchResults}
+                                            id={id}
+                                            setId={setId} 
+                                            user={user} 
+                                            setUser={setUser}/>}/>                                  
           <Route path={'/register'} element={<Register />}/>
           <Route path={'/login'} element={<Login />}/>                                     
         </Routes>

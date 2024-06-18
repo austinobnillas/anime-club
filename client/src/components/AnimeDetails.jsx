@@ -4,6 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "./Footer";
 import Header from "./Header";
+import AnimeListsInsert from "./AnimeListInsert";
 import { useState } from "react";
 
 const AnimeDetails = (props) => {
@@ -13,6 +14,8 @@ const {id} = useParams()
 const [animeData, setAnimeData] = useState({})
 const [imgUrl, setImgUrl] = useState()
 const [trailerUrl, setTrailerUrl] = useState()
+const [addStyleController, setAddStyleController] = useState(false)
+const [addAnimeStyle, setAddAnimeStyle] = useState("animeDetails-addToListContainer-displayNone");
 
 useEffect(() => {
     axios.get(`https://api.jikan.moe/v4/anime/${id}/full`)
@@ -28,8 +31,19 @@ useEffect(() => {
         .catch((err) => {
             console.log(err)
         });
-
+        
 }, [])
+
+const addAnimeToListController = () => {
+    if (addStyleController === false){
+        setAddAnimeStyle("animeDetails-addToListContainer-display")
+        setAddStyleController(true)
+    } else if (addStyleController === true) {
+        setAddAnimeStyle("animeDetails-addToListContainer-displayNone")
+        setAddStyleController(false)
+    }
+    
+}
     return (
         <div className="animeDetailsContainer">
             <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
@@ -37,9 +51,13 @@ useEffect(() => {
                 <div className="animeDetails-top">
                     <img className="animeDetails-image" src={imgUrl} alt="PV image" />
                     <div>
-                        <h1>{animeData.title_english ? animeData.title_english : animeData.title} - ({animeData.year})</h1>
+                        <h1 className="animeDetails-heading">{animeData.title_english ? animeData.title_english : animeData.title} - ({animeData.year})</h1>
                         <p>{animeData.rating}</p>
+                        <button onClick={addAnimeToListController}>Add to AnimeList</button>
                     </div>
+                </div>
+                <div className={addAnimeStyle}>
+                    <AnimeListsInsert />
                 </div>
                 </div>
                 <div className="animeDetails-middle">

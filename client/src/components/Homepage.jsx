@@ -51,15 +51,15 @@ useEffect(() => {
         .catch((err) => {
             console.log(err)
         })
-        axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
-        .then((res) => {
-            console.log(res)
-            setUser(res.data[0])
-        })
-        .catch((err) => {
-            console.log(err)
-            // console.log(errors.email_errors)
-        })
+        // axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
+        // .then((res) => {
+        //     console.log(res)
+        //     setUser(res.data[0])
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        //     // console.log(errors.email_errors)
+        // })
 }, [])
 // useEffect(() => {
 //     // fetch(`https://api.jikan.moe/v4/seasons/now?sfw`)

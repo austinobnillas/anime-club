@@ -296,13 +296,61 @@ a {
   border-radius: 15px;
   margin-right: 50px;
 }
+
+.animeDetails-addToListContainer-displayNone{
+  display: none;
+}
+.animeDetails-addToListContainer-display{
+  display: flex;
+  margin: auto;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) */
+
+}
+.anime-list-insert-container {
+background-color: rgb(34, 34, 34);
+height: 500px;
+width: 750px;
+margin: auto;  
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.list-container-insert-heading {
+margin-bottom: 20px;
+margin-top: 20px;
+}
+.list-insert-container {
+  width: 600px;
+  overflow: scroll;
+  margin-bottom: 15px;
+}
+.list-insert {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+background-color: #3f3f3f;
+margin: 5px;
+border-radius: 5px;
+padding: 15px;
+}
+.list-insert:hover {
+  opacity: 50%;
+}
+.list-insert-container::-webkit-scrollbar {
+  display: none;
+}
+
 .animeDetails-middle {
   width: 100%;
   max-width: 1600px;
   margin: auto;
   display: flex;
   flex-direction: row;
-  padding: 15px;
+  padding: 50px;
 }
 .animeDetails-description {
   width: 50%;
@@ -314,7 +362,7 @@ a {
 }
 .animeDetails-bottom {
   width: 100%;
-  padding: 15px;
+  padding: 50px;
   max-width: 1600px;
   margin: auto;
 }
@@ -351,6 +399,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  width: 100vw;
 }
 .register-header {
   background-color: rgb(34, 34, 34);
@@ -407,6 +456,72 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+/* Anime List */
+
+.anime-list-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.list-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100vw;
+  max-width: 1300px;
+}
+.list-container-heading {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.list-container-hr {
+  margin-left: auto;
+  margin-right: auto;
+}
+.list {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(34, 34, 34);
+  padding: 30px;
+  border-radius: 5px;
+  margin: 10px;
+}
+.list:hover {
+  opacity: 50%;
+}
+.create-button-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100vw;
+  max-width: 1300px;
+}
+.create-list-button {
+}
+.animelist-form {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.animelist-input {
+  border: none;
+  border: 2px solid #9290C3;
+  border-radius: 5px;
+  background-color: rgb(34, 34, 34);
+  height: 40px;
+  outline-width: 0;
 }
 
 @media (max-width: 850px) {
@@ -471,7 +586,6 @@ a {
     width: 300px;
   }
   .animeDetails-middle {
-    margin: 50px; 
     display: flex;
     flex-direction: column;
   }
@@ -484,11 +598,11 @@ a {
     width: 100%;
   }
   .animeDetails-bottom {
-    width: 330px;
+    width: 100%;
   }
   .animeDetails-trailer {
     width: 100%;
-    height: 200px;
+    height: 400px;
   }
   .register-form-container {
     width: 95vw;
@@ -497,6 +611,53 @@ a {
     padding: 15px;
     border-radius: 15px;
   }
+  .animeDetails-addToListContainer-displayNone{
+    display: none;
+  }
+  .animeDetails-addToListContainer-display{
+    display: flex;
+    margin: auto;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) */
+  
+  }
+  .anime-list-insert-container {
+  background-color: rgb(34, 34, 34);
+  height: 500px;
+  width: 400px;
+  margin: auto;  
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  .list-container-insert-heading {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  }
+  .list-insert-container {
+    width: 300px;
+    overflow: scroll;
+    margin-bottom: 15px;
+  }
+  .list-insert {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #3f3f3f;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 15px;
+  }
+  .list-insert:hover {
+    opacity: 50%;
+  }
+  .list-insert-container::-webkit-scrollbar {
+    display: none;
+  }
+  
 }
 
 

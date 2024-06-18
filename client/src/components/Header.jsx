@@ -2,11 +2,25 @@ import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 const Header = (props) => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const {searchResults, setSearchResults} = props;
     const {user, setUser} = props;
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
+        .then((res) => {
+            console.log(res)
+            console.log("HERE", res.data[0])
+            setUser(res.data[0])
+        })
+        .catch((err) => {
+            console.log(err)
+            // console.log(errors.email_errors)
+        })}, [])
+
     const searchAnime = (e) => {
         e.preventDefault();
         axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
@@ -52,8 +66,10 @@ const Header = (props) => {
                 <div>
                     { user ? 
                     <div className='logout'>
+                        <Link to={`/animelists`}><button className='logoutbutton'>My Anime Lists</button></Link>
                         <h3>{user.username}</h3> 
                         <button onClick={logout} className='logoutbutton' >Sign Out</button>
+                        
                     </div> : 
                     <div>
                         <Link to={'/login'}><button className='signInButton'>Sign in</button></Link>
