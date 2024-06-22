@@ -3,17 +3,19 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import imgIcon from "../assets/icons8-tanjiro-kamado-48.png"
+
 const Header = (props) => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const {searchResults, setSearchResults} = props;
+    const [isShowListTrue, setIsShowListTrue] = useState(false)
     const {user, setUser} = props;
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
         .then((res) => {
             console.log(res)
-            console.log("HERE", res.data[0])
             setUser(res.data[0])
         })
         .catch((err) => {
@@ -45,6 +47,14 @@ const Header = (props) => {
             console.log(err)
         })
     }
+    const showListController = () => {
+        if (isShowListTrue === false) {
+            setIsShowListTrue(true)
+        } else if (isShowListTrue === true) {
+            setIsShowListTrue(false)    
+        }
+    }
+
     return (
         <div className="header">
             <div className="header-content-container">
@@ -66,8 +76,15 @@ const Header = (props) => {
                 <div>
                     { user ? 
                     <div className='logout'>
-                        <Link to={`/animelists`}><button className='logoutbutton'>My Anime Lists</button></Link>
-                        <h3>{user.username}</h3> 
+                        
+                        <div className="username-dropdown">
+                            {isShowListTrue ? <Link className="dropdown-content"to={`/animelists`}> 
+                                    <p>My Anime Lists</p> 
+                                </Link> : null}
+                            <button onClick={showListController} className="username-dropdown-btn">{user.username}</button>
+                            
+                        </div>
+                        
                         <button onClick={logout} className='logoutbutton' >Sign Out</button>
                         
                     </div> : 

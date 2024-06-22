@@ -21,6 +21,9 @@ ALGORITHM = os.getenv("ALGORITHM")
 class AnimeWatchlist(BaseModel):
     anime_list_name: str
     user_id: int 
+class UpdatedAnimeWatchlist(BaseModel):
+    anime_list_name: str
+    list_id: int
 
 #CREATE
 @router.post('/api/createanimelist')
@@ -72,9 +75,15 @@ async def get_anime_list_contents(list_id: int, request: Request, response: Resp
 
 
 #UPDATE
-@router.get('/api/EDIanimelist')
-async def edit_anime_list():
-    return
+@router.patch('/api/editanimelist/{list_id}')
+async def edit_anime_list(list_id: int, anime_list: UpdatedAnimeWatchlist, request: Request, response: Response):
+    if check_token(request.cookies.get('cookie')) == True:
+        print(anime_list)
+        new_list = AnimeList.edit_anime_list(anime_list)
+
+        return new_list
+    else: 
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
 
 #DELETE
 @router.get('/api/animelist')

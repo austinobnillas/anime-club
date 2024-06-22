@@ -42,4 +42,21 @@ class AnimeList():
         result = MySQLConnection(db).query_db(query)
         return result
     #update
+    @classmethod
+    def edit_anime_list(cls, data):
+        query = f"""
+            UPDATE anime_list
+            SET list_name = "{data.anime_list_name}"
+            WHERE id = {data.list_id}
+        """
+        result = MySQLConnection(db).query_db(query)
+        return result
     #delete
+    @classmethod
+    def delete_anime_list(cls, data):
+        query = f"""
+            DELETE * from anime_list
+            WHERE id = {data.id}
+        """
+        result = MySQLConnection(db).query_db(query)
+        return result

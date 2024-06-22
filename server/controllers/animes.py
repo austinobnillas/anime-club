@@ -27,6 +27,7 @@ class AnimeModel(BaseModel):
     anime_score: float
     anime_season: str
     anime_list_id: int
+    anime_img_url: str
 
 @router.post("/api/{anime_list_id}/addanime/{anime_id}")
 async def add_anime(anime_list_id: int, anime_id: int, anime: AnimeModel, request: Request, response: Response):
@@ -38,22 +39,15 @@ async def add_anime(anime_list_id: int, anime_id: int, anime: AnimeModel, reques
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="You've already added this anime to this list")
         print(anime)
         Anime.add_anime(anime)
-        new_anime = Anime.get_anime(anime)
-        
-        return new_anime
+        return {"msg": "Anime successfully added!"}
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")
 
-@router.post("/api/{anime_list_id}/deleteanime/{anime_id}/{id}")
-async def delete_anime(id: int, anime_list_id: int, anime_id: int, anime: AnimeModel, request: Request, response: Response):
+@router.delete("/api/deleteanime/{anime_id}")
+async def delete_anime(anime_id: int, request: Request, response: Response):
     if check_token(request.cookies.get('cookie')) == True:
-        anime.anime_list_id = anime_list_id;
-        anime.anime_mal_id = anime_id;
-        Anime.delete_anime(id)
-
-
-        new_anime = Anime.get_anime(anime)
+        results = Anime.delete_anime(anime_id)
         
-        return new_anime
+        return results
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="token missing")

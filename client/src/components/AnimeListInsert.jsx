@@ -6,16 +6,12 @@ import axios from "axios";
 import { Link, useNavigate, useParams} from "react-router-dom";
 
 const AnimeListsInsert = (props) => {
-    const {searchResults, setSearchResults} = props
-    // const {id, setId} = props
-    const {user, setUser} = props;
     const [animeList, setAnimeList] = useState([]);
-    const [showForm, setShowForm] = useState(false)
-    const [anime_list_name, setListName] = useState();
-    const [error, setError] = useState();
-    const {id} = useParams()
+    const {anime_name, anime_year, anime_mal_id, anime_rating, anime_season, anime_score, anime_img_url} = props
+    const [error, setError] = useState()
+    const [successMessage, setSuccessMessage] = useState();
+    
     const navigate = useNavigate();
-    const user_id = 0; // THIS VARIABLE IS JUST A PLACEHOLDER
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/animelist`, {withCredentials: true})
@@ -25,28 +21,25 @@ const AnimeListsInsert = (props) => {
             })
             .catch((err) => {
                 console.log(err)
-                navigate('/')
+                // navigate('/')
             })
     }, [])
 
-    const showFormController = () => {
-        if (showForm === false) {
-            setShowForm(true)
-        } else if (showForm === true) {
-            setShowForm(false)
-        }
-    }
+    
 
-    const addAnimeToListController = (e) => {
-        e.preventDefault();
-        axios.post()
+    const addAnimeToListController = (anime_list_id) => {
+        axios.post(`http://localhost:8000/api/${anime_list_id}/addanime/${anime_mal_id}`,
+            {anime_name, anime_year, anime_mal_id, anime_rating, anime_season, anime_score, anime_list_id, anime_img_url},
+            {withCredentials: true})
             .then((res) => {
                 console.log(res.data)
-                setAnimeList(res.data)
+                setSuccessMessage(res.data.msg)
+                setError('')
             })
             .catch((err) => {
-                console.log(err.response.data.detail[0].msg)
-                setError(err.response.data.detail[0].msg)
+                console.log(err)
+                console.log(err.response.data.detail)
+                setError(err.response.data.detail)
             })
     }
     
@@ -55,13 +48,12 @@ const AnimeListsInsert = (props) => {
         <div className="anime-list-insert-container">
             <h1 className="list-container-insert-heading">My Lists</h1>
                 <div className="list-insert-container">
+                    {error ? <p className="registration-errors">{error}</p> : <p>{successMessage}</p>}
                     {animeList.map((list) => (
-                    <Link onClick={''} key={list.id}>
-                        <div className="list-insert">
+                    <button className="list-insert"onClick={() => {addAnimeToListController(list.id)}} key={list.id}>
                             <p>{list.list_name} </p>
                             <p>+</p>
-                        </div>
-                    </Link>
+                    </button>
                         
                     ))}
                 </div>

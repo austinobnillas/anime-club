@@ -106,7 +106,7 @@ def logout(response: Response):
 @router.get('/api/getuser')
 async def get_one_user(request: Request):
     if check_token(request.cookies.get('cookie')) == True:
-        username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms="HS256");
+        username = jwt.decode(request.cookies.get('cookie'), SECRET_KEY, algorithms=ALGORITHM);
         print(username['username'])
         
         user = User.get_one_user(username['username'])

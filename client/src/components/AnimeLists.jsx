@@ -15,7 +15,7 @@ const AnimeLists = (props) => {
     const [error, setError] = useState();
     const {id} = useParams()
     const navigate = useNavigate();
-    const user_id = 0; // THIS VARIABLE IS JUST A PLACEHOLDER
+    const user_id = 0; //placeholder as user_id get set in the backend
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/animelist`, {withCredentials: true})
@@ -51,29 +51,34 @@ const AnimeLists = (props) => {
     return (
         <div className="anime-list-container">
             <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
-            <h1 className="list-container-heading">My Lists</h1>
-            {/* <hr className="list-container-hr"/> */}
-            <div className="create-button-container">
-                <button className="create-list-button" onClick={showFormController}>Create List</button>
-                {showForm === true ? <div className="create-list-form-container">
-                                        <form className="animelist-form" onSubmit={createAnimeListController}>
-                                            <input onChange={(e) => setListName(e.target.value)} className="animelist-input" placeholder="List Name" type="text" />
-                                            <button type="submit">Create</button>
-                                        </form> {error ? <p className="registration-errors">{error}</p> : null}
-                                    </div>: null}
-            </div>
+            <div className="anime-list-middle">
+                <h1 className="list-container-heading">My Lists</h1>
+                <div className="create-button-container">
+                    <button className="create-list-button" onClick={showFormController}>Create List</button>
+                    {showForm === true ? <div className="create-list-form-container">
+                                            <form className="animelist-form" onSubmit={createAnimeListController}>
+                                                <input onChange={(e) => setListName(e.target.value)} className="animelist-input" placeholder="List Name" type="text" />
+                                                <button type="submit">Create</button>
+                                            </form> {error ? <p className="registration-errors">{error}</p> : null}
+                                        </div>: null}
+                </div>
                 <div className="list-container">
                     {animeList.map((list) => (
-                    <Link to={`/animelists/${list.id}`} key={list.id}>
-                        <div className="list">
+                    <Link to={`/animelists/${list.id}`} >
+                        <div className="list" key={list.id}>
                             <p>{list.list_name}</p>
                         </div>
                     </Link>
                         
                     ))}
                 </div>
-                
-                
+
+
+            </div>
+            
+            {/* <hr className="list-container-hr"/> */}
+            
+            
             <Footer />
         </div>
     )

@@ -16,7 +16,13 @@ const [imgUrl, setImgUrl] = useState()
 const [trailerUrl, setTrailerUrl] = useState()
 const [addStyleController, setAddStyleController] = useState(false)
 const [addAnimeStyle, setAddAnimeStyle] = useState("animeDetails-addToListContainer-displayNone");
-
+// for anime adding to anime list
+const [anime_name, setAnimeName] = useState('')
+const [anime_year, setAnimeYear] = useState()
+const [anime_mal_id, setAnimeMal_id] = useState()
+const [anime_rating, setAnimeRating] = useState()
+const [anime_season, setAnimeSeason] = useState()
+const [anime_score, setAnimeScore] = useState()
 useEffect(() => {
     axios.get(`https://api.jikan.moe/v4/anime/${id}/full`)
         .then((res) => {
@@ -26,6 +32,13 @@ useEffect(() => {
             console.log(res.data.data.images.jpg.large_image_url)
             setImgUrl(res.data.data.images.jpg.large_image_url)
             setTrailerUrl(res.data.data.trailer.embed_url)
+
+            res.data.data.year ? setAnimeYear(res.data.data.year) : setAnimeYear(0)
+            setAnimeMal_id(res.data.data.mal_id)
+            setAnimeRating(res.data.data.rating)
+            res.data.data.season ? setAnimeSeason(res.data.data.season) : setAnimeSeason('null')
+            setAnimeScore(res.data.data.score)
+            res.data.data.title_english ? setAnimeName(res.data.data.title_english) : setAnimeName(res.data.data.title)
             
         })
         .catch((err) => {
@@ -35,13 +48,18 @@ useEffect(() => {
 }, [])
 
 const addAnimeToListController = () => {
-    if (addStyleController === false){
+    if (user) {
+        if (addStyleController === false){
         setAddAnimeStyle("animeDetails-addToListContainer-display")
         setAddStyleController(true)
-    } else if (addStyleController === true) {
-        setAddAnimeStyle("animeDetails-addToListContainer-displayNone")
-        setAddStyleController(false)
+        } else if (addStyleController === true) {
+            setAddAnimeStyle("animeDetails-addToListContainer-displayNone")
+            setAddStyleController(false)
+        }
+    } else {
+        alert(`This feature is reserved for our members. Please Sign in or Create an account`)
     }
+    
     
 }
     return (
@@ -57,7 +75,15 @@ const addAnimeToListController = () => {
                     </div>
                 </div>
                 <div className={addAnimeStyle}>
-                    <AnimeListsInsert />
+                    <AnimeListsInsert 
+                        anime_name={anime_name}
+                        anime_year={anime_year}
+                        anime_mal_id={anime_mal_id}
+                        anime_rating={anime_rating}
+                        anime_season={anime_season}
+                        anime_score={anime_score}
+                        anime_img_url={imgUrl}
+                        />
                 </div>
                 </div>
                 <div className="animeDetails-middle">
@@ -68,6 +94,7 @@ const addAnimeToListController = () => {
                         <p>Status: {animeData.status}</p>
                         <p>Episodes: {animeData.episodes}</p>
                         <p>Source: {animeData.source}</p>
+                        <a target="_blank" href={animeData.url}>MAL Link</a>
                     </div>
                     <div className="animeDetails-description">
                         <h2>Description: </h2>
