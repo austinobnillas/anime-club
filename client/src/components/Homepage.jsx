@@ -24,9 +24,7 @@ const {user, setUser} = props;
 useEffect(() => {
     axios.get(`https://api.jikan.moe/v4/top/anime?limit=5`)
         .then((res) => {
-            console.log(res)
             setData(res.data.data)
-            console.log(res.data.pagination.last_visible_page)
             setPages(res.data.pagination.last_visible_page)
         })
         .catch((err) => {
@@ -35,8 +33,6 @@ useEffect(() => {
         // axios.get(`https://api.jikan.moe/v4/seasons/now?sfw&limit=10`)
         axios.get(`https://api.jikan.moe/v4/seasons/now?sfw`)
         .then((res) => {
-            console.log("yes")
-            console.log(res)
             setCurrentAnime(res.data.data)
         })
         .catch((err) => {
@@ -44,8 +40,6 @@ useEffect(() => {
         })
         axios.get(`https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=10`)
         .then((res) => {
-            console.log("yes")
-            console.log(res)
             setTopAnime(res.data.data)
         })
         .catch((err) => {

@@ -15,11 +15,9 @@ const Header = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/getuser`, {withCredentials: true})
         .then((res) => {
-            console.log(res)
             setUser(res.data[0])
         })
         .catch((err) => {
-            console.log(err)
             // console.log(errors.email_errors)
         })}, [])
 
@@ -27,7 +25,6 @@ const Header = (props) => {
         e.preventDefault();
         axios.get(`https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw=true`)
             .then((res) => {
-                console.log(res)
                 setSearchResults(res.data.data)
                 navigate('/search')
             })
@@ -39,7 +36,6 @@ const Header = (props) => {
     const logout = () => {
         axios.post(`http://localhost:8000/api/logout`, {}, {withCredentials: true})
         .then((res) => {
-            console.log(res)
             setUser('')
             navigate('/')
         })
@@ -60,12 +56,6 @@ const Header = (props) => {
             <div className="header-content-container">
                 <div className="header-left">
                     <Link to={'/'}><h1>AnimeClub</h1></Link>
-                    {/* <div className="nav">
-                        <Link><h3>Browse</h3></Link>
-                        <h3>News</h3>
-                        <h3>Search</h3>
-                    </div> */}
-                    
                 </div>
                 <div className="search">
                     <form onSubmit={searchAnime}>

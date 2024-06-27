@@ -3,9 +3,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation} from "react-router-dom";
 
 import trashIcon from "../assets/icons8-trash-128.png"
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 const AnimeListsContents = (props) => {
     const {searchResults, setSearchResults} = props
@@ -18,20 +22,24 @@ const AnimeListsContents = (props) => {
     const [anime_list_name, setUpdatedListName] = useState()
 
     const {list_id} = useParams();
+    const is_public = false; // placeholder
     const navigate = useNavigate();
+    let query = useQuery();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/animelist/${list_id}`, {withCredentials: true})
+        axios.get(`http://localhost:8000/api/animelist/${list_id}`, {withCredentials: true}) 
             .then((res) => {
                 console.log("TEST", res.data)
                 setAnimeListData(res.data)
-                setListName(res.data[0].list_name)
+                res.data[0].list_name ? setListName(res.data[0].list_name) : setListName(query.get("name"))
             })
             .catch((err) => {
                 console.log(err)
-                navigate('/')
+                // navigate('/')
             })
+            setListName(query.get("name"))
     }, [])
+
     
     const showFormController = () => {
         if (isEditTrue === false) {
@@ -51,7 +59,7 @@ const AnimeListsContents = (props) => {
     }
     const editAnimeListController = (e) => {
         e.preventDefault();
-        axios.patch(`http://localhost:8000/api/editanimelist/${list_id}`, {anime_list_name, list_id}, {withCredentials: true})
+        axios.patch(`http://localhost:8000/api/editanimelist/${list_id}`, {anime_list_name, list_id, is_public}, {withCredentials: true})
             .then((res)=>{
                 setListName(anime_list_name)
                 setIsEditTrue(false) 

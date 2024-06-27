@@ -16,6 +16,7 @@ const AnimeLists = (props) => {
     const {id} = useParams()
     const navigate = useNavigate();
     const user_id = 0; //placeholder as user_id get set in the backend
+    const is_public = false;
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/animelist`, {withCredentials: true})
@@ -38,7 +39,7 @@ const AnimeLists = (props) => {
 
     const createAnimeListController = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:8000/api/createanimelist`, {anime_list_name , user_id}, {withCredentials: true})
+        axios.post(`http://localhost:8000/api/createanimelist`, {anime_list_name , user_id, is_public}, {withCredentials: true})
             .then((res) => {
                 console.log("HERE", res.data)
                 setAnimeList(res.data)
@@ -58,13 +59,14 @@ const AnimeLists = (props) => {
                     {showForm === true ? <div className="create-list-form-container">
                                             <form className="animelist-form" onSubmit={createAnimeListController}>
                                                 <input onChange={(e) => setListName(e.target.value)} className="animelist-input" placeholder="List Name" type="text" />
-                                                <button type="submit">Create</button>
-                                            </form> {error ? <p className="registration-errors">{error}</p> : null}
+                                                <button className="create-list-button" type="submit">Create</button>
+                                                {error ? <p className="registration-errors">{error}</p> : null}
+                                            </form> 
                                         </div>: null}
                 </div>
                 <div className="list-container">
                     {animeList.map((list) => (
-                    <Link to={`/animelists/${list.id}`} >
+                    <Link to={`/animelists/${list.id}?name=${list.list_name}`} >
                         <div className="list" key={list.id}>
                             <p>{list.list_name}</p>
                         </div>

@@ -21,9 +21,11 @@ ALGORITHM = os.getenv("ALGORITHM")
 class AnimeWatchlist(BaseModel):
     anime_list_name: str
     user_id: int 
+    is_public: bool 
 class UpdatedAnimeWatchlist(BaseModel):
     anime_list_name: str
     list_id: int
+    is_public: bool 
 
 #CREATE
 @router.post('/api/createanimelist')
