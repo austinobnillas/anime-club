@@ -1,5 +1,5 @@
 # AnimeClub  
-### * In development *      
+### * In development * 
 
 ## Overview   
 AnimbClub is a web app designed for the anime community. Here you may search up anime data and create lists of anime for your own use. Later, I hope to add functionality for public/private lists and user discussions on specific topics and/or anime.
