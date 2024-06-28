@@ -20,7 +20,7 @@ This is my first application learning FastAPI Python Framework. This app uses da
 ![Example AnimeDetails](/client/src/assets/AnimeDetailsBottom.png)
 ### Anime Lists 
 ![Example AnimeLists](/client/src/assets/AnimeLists.png)
-![Example AnimeLists](/client/src/assets/AnimeListContent.png)
+![Example AnimeLists](/client/src/assets/AnimeListContents.png)
 
 
 
