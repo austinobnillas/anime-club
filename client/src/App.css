@@ -281,24 +281,26 @@ a {
 .animeBox-search {
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-evenly;
   align-items: center;
   max-width: 1200px;
   margin: auto;
+  justify-content: center;
 }
 .searchResults {
   display: flex;
   flex-direction: column;
   margin: 5px;
   background-color: rgb(34, 34, 34);
-  padding: 20px;
-  border-radius: 15px;
+  padding: 5px;
+  border-radius: 5px;
 }
 .searchResults:hover {
   opacity: 50%;
 }
 .searchResults-img {
-  border-radius: 15px;
+  border-radius: 5px;
+  height: auto;
+  max-width: 300px;
 }
 /* Anime Details */
 .animeDetailsContainer {
@@ -767,6 +769,42 @@ margin: 5px;
   }
   .list-insert-container::-webkit-scrollbar {
     display: none;
+  }
+  .anime-list-content-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .animeBox-search {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: center;
+  }
+  .searchResults {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 420px;
+    background-color: rgb(34, 34, 34);
+    border-radius: 5px;
+  }
+  .searchResults:hover {
+    opacity: 50%;
+  }
+  .searchResults-img {
+    border-radius: 5px;
+    height: 190px;
   }
   
 }

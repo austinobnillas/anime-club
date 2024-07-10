@@ -10,8 +10,8 @@ const Footer = () => {
                     <h5>By: Austin Obnillas</h5>
                 </div>
                 <div className="footer-right">
-                    <a href="">Github Repo</a>
-                    <a href="">Web Portfolio</a>
+                    <a target="_blank" href="https://github.com/austinobnillas/anime-club">Github Repo</a>
+                    <a target="_blank" href="https://austinobnillas.github.io/austinobnillas/">Web Portfolio</a>
                 </div>
             </div>  
         </div>

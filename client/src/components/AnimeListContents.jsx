@@ -20,6 +20,7 @@ const AnimeListsContents = (props) => {
     const [showOptionsTrue, setShowOptionsTrue] = useState(false)
     const [showOptionsControl, setShowOptionsControl] = useState("options-list-control")
     const [anime_list_name, setUpdatedListName] = useState()
+    const [editErrors, setEditErrors] = useState();
 
     const {list_id} = useParams();
     const is_public = false; // placeholder
@@ -63,16 +64,28 @@ const AnimeListsContents = (props) => {
             .then((res)=>{
                 setListName(anime_list_name)
                 setIsEditTrue(false) 
+                setEditErrors()
             })
             .catch((err)=> {
                 console.log(err)
+                err.response.data.detail[0].msg ? setEditErrors(err.response.data.detail[0].msg) 
+                : setEditErrors(err.response.data.detail) 
             })
     } 
     const deleteAnime = (id) => {
         axios.delete(`http://localhost:8000/api/deleteanime/${id}`, {withCredentials: true})
             .then((res)=> {
-                console.log(res)
                 window.location.reload(false);
+            })
+            .catch((err)=> {
+                console.log(err)
+            })
+    }
+    const deleteList = (id) => {
+        axios.delete(`http://localhost:8000/api/deleteanimelist/${id}`, {withCredentials: true})
+            .then((res)=> {
+                console.log(res)
+                navigate('/animelists')
             })
             .catch((err)=> {
                 console.log(err)
@@ -84,15 +97,15 @@ const AnimeListsContents = (props) => {
             <Header searchResults={searchResults} setSearchResults={setSearchResults} user={user} setUser={setUser}/>
             <div className="anime-list-content-list-container">
                 <div className="anime-list-content-heading">
-                    <h1>{listName}</h1>
+                    <h1>{listName}</h1> {editErrors ? <p className="registration-errors">{editErrors}</p> : null}
                     <div className="anime-list-edit-delete">
                         <button className="edit-list-button" onClick={showFormController}>Edit List</button>
                         {isEditTrue === true? 
                             <form onSubmit={editAnimeListController} className="edit-list-form">
                                 <input onChange={(e) => setUpdatedListName(e.target.value)} placeholder="New List Name" className="animelist-input"type="text" />
-                                <button type="submite">Submit</button>
+                                <button type="submit">Submit</button>
                             </form> : null}
-                        <button>Remove List</button>
+                        <button onClick={() => {deleteList(list_id)}}>Remove List</button>
                     </div>
                 </div>
                 

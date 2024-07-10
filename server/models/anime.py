@@ -56,7 +56,7 @@ class Anime():
     @classmethod
     def delete_all_anime_in_list(cls, data):
         query = f"""
-            DELETE * FROM anime
+            DELETE FROM anime
             WHERE anime_list_id = {data};
         """
         result = MySQLConnection(db).query_db(query)
