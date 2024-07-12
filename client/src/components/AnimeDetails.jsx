@@ -26,10 +26,10 @@ const [anime_score, setAnimeScore] = useState()
 useEffect(() => {
     axios.get(`https://api.jikan.moe/v4/anime/${id}/full`)
         .then((res) => {
-            console.log("LOAD")
-            console.log(res.data.data)
+            // console.log("LOAD")
+            // console.log(res.data.data)
             setAnimeData(res.data.data)
-            console.log(res.data.data.images.jpg.large_image_url)
+            // console.log(res.data.data.images.jpg.large_image_url)
             setImgUrl(res.data.data.images.jpg.large_image_url)
             setTrailerUrl(res.data.data.trailer.embed_url)
 

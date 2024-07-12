@@ -307,10 +307,7 @@ a {
   display: flex;
   flex-direction: column;
 }
-.animeDetails-background {
-  /* background: rgb(7,15,43);
-  background: linear-gradient(360deg, rgba(7,15,43,1) 0%, rgb(0, 0, 0) 35%); */
-}
+
 .animeDetails-top {
   display: flex;
   flex-direction: row;

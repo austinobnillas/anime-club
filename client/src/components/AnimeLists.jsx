@@ -41,7 +41,7 @@ const AnimeLists = (props) => {
         e.preventDefault();
         axios.post(`http://localhost:8000/api/createanimelist`, {anime_list_name , user_id, is_public}, {withCredentials: true})
             .then((res) => {
-                console.log("HERE", res.data)
+                // console.log("HERE", res.data)
                 setAnimeList(res.data)
             })
             .catch((err) => {

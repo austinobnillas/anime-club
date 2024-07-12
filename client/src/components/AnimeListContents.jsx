@@ -30,7 +30,7 @@ const AnimeListsContents = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/animelist/${list_id}`, {withCredentials: true}) 
             .then((res) => {
-                console.log("TEST", res.data)
+                // console.log("TEST", res.data)
                 setAnimeListData(res.data)
                 res.data[0].list_name ? setListName(res.data[0].list_name) : setListName(query.get("name"))
             })
