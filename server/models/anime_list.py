@@ -1,5 +1,5 @@
 from database import MySQLConnection
-db = "AnimeClub"
+db = "anime_club"
 
 class AnimeList(): 
     def __init__(self, data):
