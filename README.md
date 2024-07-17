@@ -1,5 +1,5 @@
 # AnimeClub  
-### * In development * 
+### * Site is Live *  
 
 ## Overview   
 AnimbClub is a web app designed for the anime community. Here you may search up anime data and create lists of anime for your own use. Later, I hope to add functionality for public/private lists and user discussions on specific topics and/or anime.
@@ -22,7 +22,11 @@ This is my first application learning FastAPI Python Framework. This app uses da
 ![Example AnimeLists](/client/src/assets/AnimeLists.png)
 ![Example AnimeLists](/client/src/assets/AnimeListContents.png)
 
-
+### Future Updates Planned:
+Update UI
+User Profiles
+Discussions
+Comments 
 
 ## Built With:     
 Javascript | Python | ReactJS | FastAPI | HTML | CSS | MySQL  
